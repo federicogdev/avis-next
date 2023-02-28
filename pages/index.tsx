@@ -2,7 +2,9 @@ import React, { FC } from "react";
 import Head from "next/head";
 import { INewsArticle, INewsArticlesResponse } from "@/models/NewsArticles";
 import { GetServerSideProps } from "next";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, GridItem, Text } from "@chakra-ui/react";
+import NewsArticle from "@/components/NewsArticle";
+import NewsArticlesGrid from "@/components/NewsArticlesGrid";
 
 interface IHomePageProps {
   newsArticles: INewsArticle[];
@@ -12,7 +14,7 @@ export const getServerSideProps: GetServerSideProps<
   IHomePageProps
 > = async () => {
   const res = await fetch(
-    "https://newsapi.org/v2/top-headlines?country=us&apiKey=" +
+    "https://newsapi.org/v2/everything?q=world&apiKey=" +
       process.env.NEWS_API_KEY
   );
 
@@ -22,14 +24,21 @@ export const getServerSideProps: GetServerSideProps<
 };
 
 const HomePage: FC<IHomePageProps> = ({ newsArticles }) => {
+  console.log(newsArticles);
+
   return (
     <>
       <Head>
         <title key="title">Avis News</title>
       </Head>
+      <Box py={30}>
+        <Box py={10}>
+          <Text fontSize="3xl" fontWeight="bold">
+            Top Headlines
+          </Text>
+        </Box>
 
-      <Box>
-        <Text>{JSON.stringify(newsArticles)}</Text>
+        <NewsArticlesGrid articles={newsArticles} />
       </Box>
     </>
   );

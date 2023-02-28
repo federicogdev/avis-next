@@ -1,4 +1,4 @@
-// import '@/styles/globals.css'
+import "@/styles/globals.css";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
 import type { AppProps } from "next/app";
@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NextNProgress />
-      <Container>
+      <Container maxW={{ sm: "100%", md: "80%" }}>
         <Component {...pageProps} />
       </Container>
     </ChakraProvider>
