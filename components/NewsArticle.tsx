@@ -4,7 +4,7 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
+  Box,
   Image,
   Stack,
   Heading,
@@ -30,32 +30,44 @@ const NewsArticle: FC<INewsArticleProps> = ({ article }) => {
 
   //FIXME: Make sure the Stack containing the texts is flexed and justified space between
   return (
-    <Card maxW={{ md: "md", lg: "lg" }}>
-      <CardBody p={0} alignItems="space-between">
-        <Image
-          src={validImageUrl}
-          alt="Green double couch with wooden legs"
-          // borderRadius="lg"
-          borderTopRadius="lg"
-        />
-        <Stack p={4}>
-          <Heading size="md" noOfLines={2}>
-            {article.title}
-          </Heading>
-          <Text lineHeight={1.2} noOfLines={4}>
-            {article.content}
+    <Stack
+      maxW={{ sm: "md", md: "md", lg: "lg" }}
+      shadow="lg"
+      borderRadius="lg"
+      as={Link}
+      href={article.url}
+      mB={10}
+    >
+      <Image
+        src={validImageUrl}
+        alt="Green double couch with wooden legs"
+        borderTopRadius="lg"
+        shadow="md"
+        h={{ sm: "60%", md: "50%" }}
+        maxH={{ sm: "60%", md: "50%" }}
+      />
+      <Flex
+        direction="column"
+        p={4}
+        justify="space-between"
+        h={{ sm: "40%", md: "50%" }}
+      >
+        <Heading size="md" noOfLines={2}>
+          {article.title}
+        </Heading>
+        <Text lineHeight={1.2} noOfLines={3}>
+          {article.content}
+        </Text>
+        <Flex justify="space-between" align="center">
+          <Text color="blue.600" fontSize="md" fontWeight={"bold"}>
+            {article.source.name}
           </Text>
-          <Flex justify="space-between" align="center">
-            <Text color="blue.600" fontSize="md" fontWeight={"bold"}>
-              {article.source.name}
-            </Text>
-            <Text fontSize="sm">
-              {dayjs(article.publishedAt).format("DD MMM YYYY")}
-            </Text>
-          </Flex>
-        </Stack>
-      </CardBody>
-    </Card>
+          <Text fontSize="sm">
+            {dayjs(article.publishedAt).format("DD MMM YYYY")}
+          </Text>
+        </Flex>
+      </Flex>
+    </Stack>
   );
 };
 

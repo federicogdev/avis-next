@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps<
   IHomePageProps
 > = async () => {
   const res = await fetch(
-    "https://newsapi.org/v2/everything?q=world&apiKey=" +
+    "https://newsapi.org/v2/top-headlines?country=us&apiKey=" +
       process.env.NEWS_API_KEY
   );
 
@@ -24,8 +24,6 @@ export const getServerSideProps: GetServerSideProps<
 };
 
 const HomePage: FC<IHomePageProps> = ({ newsArticles }) => {
-  console.log(newsArticles);
-
   return (
     <>
       <Head>

@@ -12,7 +12,7 @@ const NewsArticlesGrid: FC<INewsArticlesGrid> = ({ articles }) => {
     <SimpleGrid
       columns={{ sm: 1, md: 2, lg: 3 }}
       spacing={5}
-      gridTemplateRows="masonry"
+      // gridTemplateRows="masonry"
     >
       {articles.map((article) => (
         <NewsArticle article={article} key={article.url} />

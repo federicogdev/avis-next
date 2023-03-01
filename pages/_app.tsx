@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NextNProgress />
-      <Container maxW={{ sm: "100%", md: "80%" }}>
+      <Container maxW={{ sm: "100%", md: "80%" }} centerContent>
         <Component {...pageProps} />
       </Container>
     </ChakraProvider>
